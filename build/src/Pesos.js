@@ -7,15 +7,15 @@ export class Pesos {
             optimizer: 'sgd',
             loss: 'meanSquaredError'
         });
-        const height = tf.tensor2d([1.82, 1.50, 1.35, 1.75], [4, 1]);
-        const weight = tf.tensor2d([92, 60, 45, 85], [4, 1]);
+        const height = tf.tensor([1.82, 1.50, 1.35, 1.75, 1.82, 1.50, 1.35, 1.75], [8, 1]);
+        const weight = tf.tensor([92, 60, 45, 85, 92, 60, 45, 85], [8, 1]);
         model.fit(height, weight, {
-            epochs: 1000,
+            epochs: 15000,
             batchSize: 32,
             callbacks: {}
         }).then(info => {
             console.log('Final accuracy', info.history.acc);
-            const prediction = model.predict(tf.tensor2d([1.80], [1, 1]));
+            const prediction = model.predict(tf.tensor([1.80], [1, 1]));
             console.log(prediction.toString());
         });
     }

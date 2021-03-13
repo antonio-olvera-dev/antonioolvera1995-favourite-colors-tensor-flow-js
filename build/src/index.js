@@ -1,2 +1,2 @@
-import { Pesos } from "./pesos.js";
-new Pesos();
+import { Salary } from './salary.js';
+new Salary();
