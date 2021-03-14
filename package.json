@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "@tensorflow/tfjs-node": "^3.3.0",
-    "@tensorflow/tfjs-node-gpu": "^3.3.0"
+    "@tensorflow/tfjs-node-gpu": "^3.3.0",
+    "@tensorflow/tfjs-vis": "^1.0.2"
   }
 }
