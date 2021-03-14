@@ -1,3 +1,6 @@
+/**
+ * @Title Simple example
+ */
 import tf from "@tensorflow/tfjs-node-gpu";
 export class Pesos {
     constructor() {

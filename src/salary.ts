@@ -1,3 +1,6 @@
+/**
+ * @Title Linear Regression Algorithm
+ */
 import tf from '@tensorflow/tfjs-node-gpu';
 export class Salary {
     constructor() {
