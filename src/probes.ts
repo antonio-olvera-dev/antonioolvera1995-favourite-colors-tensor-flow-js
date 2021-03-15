@@ -1,47 +1,47 @@
 import tf from "@tensorflow/tfjs-node-gpu";
 export class Probes {
     constructor() {
-        
+
 
 
         const model = tf.sequential({
             layers: [
-                tf.layers.dense({ inputShape: [1], units: 1,activation:"sigmoid" })]
+                tf.layers.dense({ inputShape: [2], units: 1, activation: "relu", }),
+                tf.layers.dense({ units: 1, activation: "sigmoid", }),
+            ]
         });
-        
+
         model.compile({
-            optimizer: 'sgd',
+            optimizer: 'adam',
             loss: 'meanSquaredError',
-            metrics: ['accuracy']
-         
+            metrics: ['binaryAccuracy']
+
+
         });
-        
-        const x = tf.tensor([1, 2, 3, 4, 5, 6,1, 2, 3, 4, 5, 6,1, 2, 3, 4, 5, 6,1, 2, 3, 4, 5, 6,1, 2, 3, 4, 5, 6]);
-        const y = tf.tensor([0, 1, 0, 1, 0, 1,0, 1, 0, 1, 0, 1,0, 1, 0, 1, 0, 1,0, 1, 0, 1, 0, 1,0, 1, 0, 1, 0, 1]);
-        
-        function onBatchEnd(batch:any, log:any){
-            console.log('accuracy', log.acc);
-        }
-        
+
+        const x = tf.tensor([[0, 0], [0, 1], [1, 0], [1, 1]]);
+        const y = tf.tensor([[0], [1], [1], [0]]);
+
+
         async function predict() {
             try {
-        
+
                 const train = await model.fit(x, y, {
-                    epochs: 50,
-                    batchSize: 1,
-                    callbacks: {onBatchEnd}
+                    epochs: 500,
+                    batchSize: 4,
+                    callbacks: {}
+
                 });
-        
+
+  
                 // console.log('Final accuracy', train.history);
-                const prediction = model.predict(tf.tensor([1,2,3,4]));
+                const prediction = model.predict(tf.tensor([[0, 0], [0, 1], [1, 1]]));
                 console.log(prediction.toString());
-        
-        
-        
+
             } catch (error) { console.log(error); }
         }
-        predict();
-        
-        
+        predict(); 
+
+
     }
 }

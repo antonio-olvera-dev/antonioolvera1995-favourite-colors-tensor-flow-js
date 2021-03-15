@@ -6,6 +6,6 @@ import { Probes } from "./probes.js";
 import { Salary } from './salary.js'
 // new Pesos();
 // new Salary();
-// new Probes();
+new Probes();
 // new Autos();
 
